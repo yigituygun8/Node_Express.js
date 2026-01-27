@@ -1,0 +1,20 @@
+{
+  "name": "nodejs_crash",
+  "version": "1.0.0",
+  "description": "Node.js Crash Course",
+  "homepage": "https://github.com/yigituygun8/Node_Express.js#readme",
+  "bugs": {
+    "url": "https://github.com/yigituygun8/Node_Express.js/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yigituygun8/Node_Express.js.git"
+  },
+  "license": "MIT",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --env-file=.env --watch server.js"
+  }
+}
