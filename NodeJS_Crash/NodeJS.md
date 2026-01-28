@@ -24,3 +24,38 @@ Common Use Cases:
 
 What are environment variables?:
 - Environment variables are dynamic values that can affect the way running processes behave on a computer. In Node.js, they are often used to store configuration settings, such as database connection strings, API keys, and other sensitive information that should not be hard-coded into the application. They can be accessed in Node.js using `process.env.VARIABLE_NAME`. We need to create a `.env` file to store these variables. No need to install dotenv package anymore.
+
+What is Postman?:
+- Postman is a popular API development and testing tool that allows developers to create, test, and document APIs. It provides a user-friendly interface to send HTTP requests, inspect responses, and automate testing workflows. Postman supports various HTTP methods (GET, POST, PUT, DELETE, etc.) and allows users to set headers, parameters, and body data for requests. It also offers features like collections, environments, and scripting to enhance API testing and collaboration among team members.
+
+Callback-based vs Promise-based Asynchronous Programming in Node.js:
+- **Callback-based Asynchronous Programming**: In this approach, functions are passed as arguments (callbacks) to other functions and are executed once the asynchronous operation is complete. While this method is straightforward, it can lead to "callback hell" when dealing with multiple nested callbacks, making the code harder to read and maintain.
+```javascript
+fs.readFile('file.txt', (err, data) => {
+    if (err) throw err;
+    console.log(data);
+});
+```
+- **Promise-based Asynchronous Programming**: Promises provide a cleaner and more manageable way to handle asynchronous operations. A Promise represents a value that may be available now, in the future, or never. Promises can be chained using `.then()` for success and `.catch()` for error handling, which helps avoid deeply nested callbacks.
+```javascript
+fs.promises.readFile('file.txt')
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err => {
+        console.error(err);
+    });
+```
+- **Async/Await**: Introduced in ES2017, async/await is built on top of Promises and provides a more synchronous-looking code structure for asynchronous operations. Functions declared with the `async` keyword can use the `await` keyword to pause execution until a Promise is resolved, making the code easier to read and maintain.
+```javascript   
+async function readFile() {
+    try {
+        const data = await fs.promises.readFile('file.txt');
+        console.log(data);
+    } catch (err) {
+        console.error(err);
+    }
+}
+readFile();
+```
+In summary, while callback-based programming is simple for single asynchronous operations, Promise-based programming and async/await offer more elegant solutions for handling complex asynchronous workflows in Node.js applications.
