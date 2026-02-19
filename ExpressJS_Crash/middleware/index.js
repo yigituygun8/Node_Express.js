@@ -1,0 +1,8 @@
+export {default as logger} from "./logger.js"; // Export the logger middleware function from the "logger.js" file. This allows us to import and use the logger middleware in other parts of our application, such as the main server file (e.g., server.js) or specific route files (e.g., posts.js).
+export {default as errorHandler} from "./error.js"; // Export the error handling middleware function from the "error.js" file. This allows us to import and use the error handling middleware in other parts of our application, such as the main server file (e.g., server.js) or specific route files (e.g., posts.js).
+export {default as notFound404} from "./notFound404.js"; // Export the 404 not found middleware function from the "notFound404.js" file. This allows us to import and use the 404 not found middleware in other parts of our application, such as the main server file (e.g., server.js) or specific route files (e.g., posts.js).  
+
+// "default as" is used to export a default export from a module with a specific name. In this case, we are exporting the default export from each middleware file (logger.js, error.js, notFound404.js) and giving it a specific name (logger, errorHandler, notFound404) that can be used when importing it in other files. 
+// This allows us to have a clear and consistent naming convention for our middleware functions when we import them into our main server file or route files.
+
+// So, instead of importing them and then exporting them here, we used export {default as ...} 
