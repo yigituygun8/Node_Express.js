@@ -47,18 +47,20 @@ router.get("/", (req, res) => {
 })
 
 // Get a single post by ID
-router.get("/:id", (req, res) => {
+router.get("/:id", (req, res, next) => {
     const id = parseInt(req.params.id); // get the id from parameters and convert it to an integer. Always remember that parameters from the URL are strings by default, so we need to convert it to the appropriate type (in this case, an integer) before using it to find the post.
     const post = posts.find(p => p.id === id); // find the post with the matching id in the "posts" array
     // post is a JSON object here
-    if(post) {
-        return res.status(200).json(post); // If the post is found, send it back as a JSON response with a 200 status code.
-    } 
-    res.status(404).json({message: `Post with id ${id} not found`}); // If the post is not found, send a JSON response with a 404 status code and a message indicating that the post was not found.
+    if(!post) {
+        const error = new Error(`Post with id ${id} not found`); // Create a new error object with a message indicating that the post with the specified id was not found.
+        error.status = 404; // Set the "status" property of the error object to 404 -> REQUESTED SOURCE NOT FOUND
+        return next(error); // Pass the error to the next middleware in the chain (error handling middleware). This allows us to handle the error in a centralized way, rather than having to handle it in every route handler. By calling "next(error)", we are telling Express to skip any remaining route handlers and go directly to the error handling middleware, where we can send a response back to the client with the appropriate error message and status code.
+    }
+    res.status(200).json(post);
 })
 
 // Create a new post
-router.post("/", (req, res) => {
+router.post("/", (req, res, next) => {
     console.log(req.body)
 
     // In a real application, you would typically validate the incoming data and save it to a database. For this example, we will just add it to our hardcoded "posts" array.
@@ -68,7 +70,9 @@ router.post("/", (req, res) => {
         title: req.body.title, // Get the title from the request body. !!! This assumes that the client is sending a JSON payload with a "title" field when making the POST request.
     }
     if(!newPost.title) {
-        return res.status(400).json({message: "Title is required"});
+        const error = new Error("Title is required");
+        error.status = 400;
+        return next(error);
     }
     newPost.title = newPost.title.trim();
     posts.push(newPost);
@@ -76,21 +80,38 @@ router.post("/", (req, res) => {
 });
 
 // Put (Update) Post
-router.put("/:id", (req, res) => {
+router.put("/:id", (req, res, next) => {
     const id = parseInt(req.params.id);
     const post = posts.find(p => p.id === id);
 
     if(!post) {
-        return res.status(404).json({message: `Post with id ${id} not found`});
+        const error = new Error(`Post with id ${id} not found`);
+        error.status = 404;
+        return next(error);
     }
 
     if(!req.body.title) {
-        return res.status(400).json({message: "Title is required"});
+        const error = new Error("Title is required");
+        error.status = 400; // 400 is the status code for "Bad Request" (the server cannot process the request due to client error, such as missing required fields or invalid data)
+        return next(error);
     }
     const updatedTitle = req.body.title.trim();
     post.title = updatedTitle;
     res.status(200).json({message: "Post updated successfully", post});
 })
+
+// Delete Post
+router.delete("/:id", (req, res, next) => {
+    const id = parseInt(req.params.id);
+    const post = posts.find(p => p.id === id);
+    if(!post) {
+        const error = new Error(`Post with id ${id} not found`);
+        error.status = 404;
+        return next(error);
+    }
+    posts = posts.filter(p => p.id !== id); // Remove the post with the matching id from the "posts" array using the "filter" method, which creates a new array that includes all posts except the one with the specified id.
+    res.status(200).json({message: `Post with id ${id} deleted successfully`});
+});
 
 
 // It is important to export the router object at the end of the file so that it can be imported and used in other parts of the application, such as the main server file (e.g., server.js).
