@@ -3,9 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>Posts</title>
+    <style>
+        body {
+            font-family:'Courier New', Courier, monospace;
+            margin-left: 20px;
+        }
+        #add-post-form {
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        #add-post-form #post-title {
+            padding: 5px;
+            text-align: center;
+        }
+        #output {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Home Page</h1>
+    <h1>Posts:</h1>
+    
+    <form id="add-post-form">
+        <label for="post-title">Post Title:</label>
+        <input type="text" id="post-title" name="post-title" required placeholder="Enter the post's title...">
+        <button type="submit">Add Post</button>
+    </form>
+    
+    <button id="get-posts-btn">Get Posts</button>
+    <div id="output"></div>
+
+    <script src="./js/main.js"></script> <!-- main.js is for handling the button click and displaying posts -->
 </body>
 </html>
