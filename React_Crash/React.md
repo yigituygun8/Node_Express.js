@@ -21,6 +21,7 @@ Components: Reusable piece of code that can be used to build elements on the pag
 
     
 State: Represents the data that a component manages internally. Changing the state of a component will trigger a re-render, allowing the UI to update based on the new state. Could be a form input data, fetched data, UI-related data like whether a dropdown is open or closed, etc. There is also global state, which is shared across multiple components and can be managed using libraries like Redux or Context API.
+It is like a brain of the component, it holds the data that can change over time and affects how the component renders. State is mutable, meaning that it can be updated using the `setState` method in class components or the `useState` hook in functional components. When the state changes, React will re-render the component to reflect the new state in the UI.
 
 Props: Short for "properties," props are read-only data that are passed from a parent component to a child component. They allow components to communicate with each other and share data. Props are immutable, meaning that a child component cannot modify the props it receives from its parent.
 
