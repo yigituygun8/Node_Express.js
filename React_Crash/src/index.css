@@ -1,11 +1,9 @@
-/* import tailwind css to our global styles */
 @import 'tailwindcss';
-
-/* if you use Tailwind CSS, then you can use this file as global styles such as custom utilities or theme overrides or font definitions */
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
-@import "tailwindcss";
+/* if you use Tailwind CSS, then you can use this file as global styles such as custom utilities or theme overrides or font definitions */
+
 
 @theme {
   --color-primary: #030014;
