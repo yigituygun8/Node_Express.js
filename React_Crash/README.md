@@ -4,6 +4,12 @@
 - Tailwind CSS
 - Appwrite (for backend services)
 
+# TODO (After finishing the crash course):
+- Add user authentication with Appwrite (email/password, OAuth, etc.)
+- Implement user profiles and allow users to save their favorite movies
+- Add pagination to the movie list
+- Add horizontal scrolling for the trending movies section (responsive design)
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
