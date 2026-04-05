@@ -60,14 +60,16 @@
   }
 
   .trending {
-    @apply mt-20;
+    @apply mt-20 mb-8;
 
     & ul {
-      @apply flex flex-row overflow-y-auto gap-5 -mt-10 w-full hide-scrollbar;
+      @apply flex flex-row overflow-x-auto md:overflow-x-visible overflow-y-hidden gap-5 md:gap-3 -mt-10 w-full pb-2 touch-pan-x snap-x snap-mandatory md:justify-between;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
     }
 
     & ul li {
-      @apply min-w-[230px] flex flex-row items-center;
+      @apply min-w-[230px] md:min-w-0 shrink-0 md:shrink md:flex-1 flex flex-row items-center snap-start;
     }
 
     & ul li p {
