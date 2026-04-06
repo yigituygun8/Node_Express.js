@@ -51,6 +51,13 @@
 }
 
 @layer components {
+  .movie-card-link {
+    @apply hover:scale-105 text-gray-200 no-underline transition-transform duration-200 ease-in-out;
+
+    &:hover h3 {
+      @apply underline;
+    }
+  }
   .pattern {
     @apply bg-hero-pattern w-full h-screen bg-center bg-cover absolute z-0;
   }
@@ -144,6 +151,17 @@
       @apply text-gray-100 font-medium text-base;
     }
   }
+
+  .movie-details {
+    @apply flex-1 min-w-0 flex flex-col gap-5;
+    & h3 {
+      @apply text-2xl font-bold sm:text-3xl;
+    }
+    & .genre-box {
+      @apply inline-block bg-purple-700 text-gray-200 text-xs px-2 py-1 rounded ml-2;
+    }
+  }
+
 }
 
 @utility text-gradient {
